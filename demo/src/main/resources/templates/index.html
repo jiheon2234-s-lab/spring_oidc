@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>OAuth2 Login</title>
+</head>
+<body>
+<h1>로그인</h1>
+<a id="google-login" href="#">Google로 로그인</a>
+
+<script th:inline="javascript">
+    const clientId = [[${googleClientId}]];
+    console.log(clientId)
+    const redirectUri = "http://localhost:8080/custom/oauth2/code/google";
+    // const scope = "openid profile email";
+    const scope = "email"
+    const state = crypto.randomUUID();
+
+    const params = new URLSearchParams({
+        client_id: clientId,
+        redirect_uri: redirectUri,
+        response_type: "code",
+        scope: scope,
+        // state: state,
+        // access_type: "offline",
+        // include_granted_scopes: "true"
+    });
+
+    document.getElementById("google-login").href =
+        `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+</script>
+</body>
+</html>

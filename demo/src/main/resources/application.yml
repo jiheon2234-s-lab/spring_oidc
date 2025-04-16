@@ -1,0 +1,14 @@
+spring:
+  security:
+    user:
+      name: none
+      password: none
+
+
+  config:
+    import: classpath:secrets.yml
+
+#oauth:
+#  google:
+#    clientId: ${GOOGLE_CLIENT_ID:}
+#    clientSecret: ${GOOGLE_CLIENT_SECRET:}
