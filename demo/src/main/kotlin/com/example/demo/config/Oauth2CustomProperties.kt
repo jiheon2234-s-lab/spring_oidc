@@ -10,25 +10,25 @@ private val logger = KotlinLogging.logger {}
 
 
 @Component
-@ConfigurationProperties(prefix = "oauth.google")
+@ConfigurationProperties(prefix = "oauth.custom")
 @PropertySource(value = ["classpath:application.yml"])
 class Oauth2CustomProperties {
 
-    lateinit var clientId: String
-    lateinit var clientSecret: String
+    lateinit var googleClientId: String
+    lateinit var googleClientSecret: String
 
     @PostConstruct
     fun validate() {
         // isInitialized 체크를 통해 초기화 여부 검증
-        if (!::clientId.isInitialized || !::clientSecret.isInitialized) {
+        if (!::googleClientId.isInitialized || !::googleClientSecret.isInitialized) {
             throw IllegalStateException("OAuth2 properties not initialized: clientId or clientSecret")
         }
 
         // 값이 비어있는지 검증
-        if (clientId.isBlank() || clientSecret.isBlank()) {
+        if (googleClientId.isBlank() || googleClientSecret.isBlank()) {
             throw IllegalStateException("Missing Google OAuth configuration: clientId or clientSecret is blank")
         }
 
-        logger.info { "clientId = $clientId, clientSecret = $clientSecret" }
+        logger.info { "clientId = $googleClientId, clientSecret = $googleClientSecret" }
     }
 }

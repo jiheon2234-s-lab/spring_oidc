@@ -49,8 +49,8 @@ class Oauth2Controller(
         val tokenUrl = "https://oauth2.googleapis.com/token"
 
         val form = LinkedMultiValueMap<String, String>().apply {
-            add("client_id", oauth2CustomProperties.clientId)
-            add("client_secret", oauth2CustomProperties.clientSecret)
+            add("client_id", oauth2CustomProperties.googleClientId)
+            add("client_secret", oauth2CustomProperties.googleClientSecret)
             add("code", code)
             add("grant_type", "authorization_code")
             add("redirect_uri", "http://localhost:8080/custom/oauth2/code/google")
