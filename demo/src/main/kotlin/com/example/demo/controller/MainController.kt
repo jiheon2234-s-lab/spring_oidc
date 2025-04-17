@@ -19,7 +19,7 @@ class MainController(
      */
     @GetMapping("/")
     fun index(model: Model): String {
-        model.addAttribute("googleClientId", oauth2CustomProperties.googleClientId)
+        model.addAttribute("oauth2CustomProperties", oauth2CustomProperties)
         return "index"
     }
 

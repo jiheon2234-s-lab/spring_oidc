@@ -17,18 +17,22 @@ class Oauth2CustomProperties {
     lateinit var googleClientId: String
     lateinit var googleClientSecret: String
 
+    lateinit var naverClientId: String
+    lateinit var naverClientSecret: String
+
     @PostConstruct
     fun validate() {
-        // isInitialized 체크를 통해 초기화 여부 검증
-        if (!::googleClientId.isInitialized || !::googleClientSecret.isInitialized) {
-            throw IllegalStateException("OAuth2 properties not initialized: clientId or clientSecret")
-        }
-
         // 값이 비어있는지 검증
-        if (googleClientId.isBlank() || googleClientSecret.isBlank()) {
-            throw IllegalStateException("Missing Google OAuth configuration: clientId or clientSecret is blank")
+
+        logger.info {
+            """\n
+            googleClientId = $googleClientId, clientSecret = $googleClientSecret
+            naverClientId = $naverClientId naverClientSecret= $naverClientSecret
+        """.trimMargin()
         }
 
-        logger.info { "clientId = $googleClientId, clientSecret = $googleClientSecret" }
+        if (googleClientId.isBlank() || googleClientSecret.isBlank() || naverClientId.isBlank() || naverClientSecret.isBlank()) {
+            throw IllegalStateException()
+        }
     }
 }
