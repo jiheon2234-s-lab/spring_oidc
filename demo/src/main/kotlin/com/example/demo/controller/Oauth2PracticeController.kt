@@ -18,7 +18,7 @@ import java.util.*
 private val logger = KotlinLogging.logger {}
 
 @RestController
-class Oauth2Controller(
+class Oauth2PracticeController(
     private val oauth2CustomProperties: Oauth2CustomProperties,
     private val restClient: RestClient,
 ) {
@@ -165,6 +165,6 @@ class Oauth2Controller(
         }
 
         val jwt = decoder.decode(jwtToken)
-        return jwt // ✅ 요거 없으면 Unit 됨!
+        return jwt
     }
 }

@@ -1,8 +1,7 @@
 <template>
   <div>
-<!--    <NuxtRouteAnnouncer />-->
-<!--    <NuxtWelcome />-->
-    <GoogleLoginButton />
+    <!--    <NuxtRouteAnnouncer />-->
+    <!--    <NuxtWelcome />-->
     <NuxtPage/>
   </div>
 </template>
