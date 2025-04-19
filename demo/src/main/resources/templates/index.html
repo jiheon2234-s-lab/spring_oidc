@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>OAuth2 Login</title>
+</head>
+<body>
+<h1>로그인</h1>
+<a id="google-login" href="#">Google로 로그인</a>
+<br><br><br>
+<a id="naver-login" href="#">Naver로 로그인</a>
+
+<script th:inline="javascript">
+    const googleClientId = [[${oauth2CustomProperties.googleClientId}]];
+    const googleRedirectUri = "http://localhost:8080/custom/oauth2/code/google";
+    // const scope = "openid profile email";
+    const googleScope = "email"
+    const googleState = crypto.randomUUID();
+    const googleParams = new URLSearchParams({
+        client_id: googleClientId,
+        redirect_uri: googleRedirectUri,
+        response_type: "code",
+        scope: googleScope,
+        // state: googleState,
+        // access_type: "offline",
+        // include_granted_scopes: "true"
+    });
+    document.getElementById("google-login").href =
+        `https://accounts.google.com/o/oauth2/v2/auth?${googleParams.toString()}`;
+
+
+    const naverClientId = [[${oauth2CustomProperties.naverClientId}]];
+    const naverRedirectUri = "http://localhost:8080/custom/oauth2/code/naver"
+    const naverState = crypto.randomUUID();
+    const naverParams = new URLSearchParams({
+        client_id:naverClientId,
+        response_type:"code",
+        redirect_uri: naverRedirectUri,
+        // state: naverState,
+    })
+
+    document.getElementById("naver-login").href =
+        `https://nid.naver.com/oauth2.0/authorize?${naverParams.toString()}`
+
+</script>
+</body>
+</html>
